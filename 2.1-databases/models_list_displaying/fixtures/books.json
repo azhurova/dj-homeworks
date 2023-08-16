@@ -16,5 +16,23 @@
       "author": "Джордж Оруэл",
       "pub_date": "2016-12-06"
     }
+  },
+  {
+    "model": "books.book",
+    "pk": 3,
+    "fields": {
+      "name": "Неукротимая планета",
+      "author": "Гарри Дж. Гаррисон",
+      "pub_date": "2015-09-17"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 4,
+    "fields": {
+      "name": "Окна",
+      "author": "Д. Нагиев",
+      "pub_date": "2010-10-10"
+    }
   }
 ]
