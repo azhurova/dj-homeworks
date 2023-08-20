@@ -7,10 +7,14 @@ from logistic.serializers import ProductSerializer, StockSerializer
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    # при необходимости добавьте параметры фильтрации
+    filterset_fields = ['title']
+    search_fields = ['title', 'description']
+    ordering_fields = ['id', 'title']
 
 
 class StockViewSet(ModelViewSet):
     queryset = Stock.objects.all()
     serializer_class = StockSerializer
-    # при необходимости добавьте параметры фильтрации
+    filterset_fields = ['address', 'products']
+    search_fields = ['address', 'products']
+    ordering_fields = ['id', 'address']
