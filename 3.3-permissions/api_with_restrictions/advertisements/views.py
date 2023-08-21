@@ -3,7 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from advertisements.models import Advertisement
-from advertisements.permissions import IsOwner
+from advertisements.permissions import IsOwnerOrSuperuser
 from advertisements.serializers import AdvertisementSerializer
 
 
@@ -27,6 +27,6 @@ class AdvertisementViewSet(ModelViewSet):
         """Получение прав для действий."""
         if self.action in ["create"]:
             return [IsAuthenticated()]
-        if self.action in ["update", "partial_update"]:
-            return [IsAuthenticated(), IsOwner()]
+        if self.action in ["update", "partial_update", "destroy"]:
+            return [IsAuthenticated(), IsOwnerOrSuperuser()]
         return []
