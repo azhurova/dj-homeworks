@@ -5,7 +5,6 @@ from rest_framework.test import APIClient
 from model_bakery import baker
 
 from students.models import Student, Course
-from django_testing import settings
 
 
 @pytest.fixture
@@ -154,9 +153,7 @@ TEST_MAX_STUDENTS_PER_COURSE = 2
     )
 )
 @pytest.mark.django_db
-def test_create_course_with_students(client, student_factory, student_count, expected_status):
-    # фикстура settings не работает константа в serializers.CourseSerializer.validate не меняется
-    save_max_students_per_course = settings.MAX_STUDENTS_PER_COURSE
+def test_create_course_with_students(client, settings, student_factory, student_count, expected_status):
     settings.MAX_STUDENTS_PER_COURSE = TEST_MAX_STUDENTS_PER_COURSE
 
     students = student_factory(_quantity=student_count)
@@ -173,5 +170,3 @@ def test_create_course_with_students(client, student_factory, student_count, exp
         assert response.status_code == expected_status
         data = response.json()
         assert data['name'] == course_name
-
-    settings.MAX_STUDENTS_PER_COURSE = save_max_students_per_course

@@ -1,6 +1,6 @@
+from django.conf import settings
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-from django_testing import settings
 from students.models import Student, Course
 
 
