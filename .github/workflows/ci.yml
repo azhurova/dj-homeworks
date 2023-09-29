@@ -17,7 +17,7 @@ jobs:
       DB_USER: ${{ secrets.DB_USER }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
     services:
-      postgres_test:
+      postgres:
         image: postgres:12
         env:
           POSTGRES_DB: ${{ env.DB_NAME }}
@@ -46,11 +46,6 @@ jobs:
         run: flake8 ./3.1-drf-intro/smart_home/smart_home ./3.1-drf-intro/smart_home/measurement --exclude=./3.1-drf-intro/smart_home/measurement/migrations
 
       - name: Тестирование
-        depends_on:
-          postgres_test:
-            condition: service_healthy
-        links:
-          - postgres_test
         run: |
           cd ./3.1-drf-intro/smart_home/
           python3 manage.py test
