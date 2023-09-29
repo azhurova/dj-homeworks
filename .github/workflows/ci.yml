@@ -46,7 +46,9 @@ jobs:
         run: flake8 ./3.1-drf-intro/smart_home/smart_home ./3.1-drf-intro/smart_home/measurement --exclude=./3.1-drf-intro/smart_home/measurement/migrations
 
       - name: Тестирование
-        run: python3 ./3.1-drf-intro/smart_home/manage.py test
+        run:
+          cd ./3.1-drf-intro/smart_home/
+          python3 manage.py test
         env:
           SECRET_KEY: ${{ env.SECRET_KEY }}
           DEBUG: ${{ env.DEBUG }}
