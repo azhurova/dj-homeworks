@@ -17,7 +17,8 @@ class MeasurementPostSerializer(serializers.ModelSerializer):
         return request.build_absolute_uri(photo_url)
 
     def get_validation_exclusions(self):
-        exclusions = super(MeasurementPostSerializer, self).get_validation_exclusions()
+        exclusions = super(MeasurementPostSerializer, self)\
+            .get_validation_exclusions()
         return exclusions + ['image']
 
 

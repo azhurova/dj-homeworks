@@ -6,7 +6,9 @@ from datetime import datetime
 from django.http import HttpResponse
 
 from measurement.models import Sensor, Measurement
-from measurement.serializers import SensorSerializer, SensorDetailSerializer, MeasurementPostSerializer
+from measurement.serializers import SensorSerializer
+from measurement.serializers import SensorDetailSerializer
+from measurement.serializers import MeasurementPostSerializer
 
 
 def time_view(request):

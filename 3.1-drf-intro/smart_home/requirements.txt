@@ -4,3 +4,4 @@ psycopg2-binary
 Pillow
 drf-extra-fields
 python-dotenv
+flake8
