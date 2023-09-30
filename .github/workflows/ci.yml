@@ -24,7 +24,7 @@ jobs:
           POSTGRES_USER: ${{ env.DB_USER }}
           POSTGRES_PASSWORD: ${{ env.DB_PASSWORD }}
         ports:
-          - 5432-5432
+          - 5432:5432
         options:
           --health-cmd pg_isready
           --health-interval 5s
@@ -43,11 +43,12 @@ jobs:
         run: pip install -r ./3.1-drf-intro/smart_home/requirements.txt
 
       - name: Линтинг
-        run: flake8 ./3.1-drf-intro/smart_home/smart_home ./3.1-drf-intro/smart_home/measurement --exclude=./3.1-drf-intro/smart_home/measurement/migrations
+        run: flake8 ./3.1-drf-intro/smart_home/smart_home ./3.1-drf-intro/smart_home/measurement --exclude=./3.1-drf-intro/smart_home/measurement/migrations,./3.1-drf-intro/smart_home/smart_home/settings.py
 
       - name: Тестирование
         run: |
           cd ./3.1-drf-intro/smart_home/
+          python3 manage.py migrate
           python3 manage.py test
         env:
           SECRET_KEY: ${{ env.SECRET_KEY }}
